@@ -1,6 +1,7 @@
 cmake_minimum_required()
 project(Armadeus-Morse)
 
+# Set up the build directory
 set(dir ${CMAKE_CURRENT_SOURCE_DIR}/build/)
 set(EXECUTABLE_OUTPUT_PATH ${dir} CACHE PATH "Build directory" FORCE)
 set(LIBRARY_OUTPUT_PATH ${dir} CACHE PATH "Build directory" FORCE)
@@ -12,4 +13,10 @@ set(EXECUTABLE_OUTPUT_PATH ${dir})
 set(LIBRARY_OUTPUT_PATH ${dir}lib)
 set(CMAKE_CACHEFILE_DIR ${dir})
 
+# Cross compilation
+# Comment this if not necessary
+#set(CMAKE_TOOLCHAIN_FILE Toolschains/armadeus.cmake)
+
+
+# Compilation of sources
 add_subdirectory(src)
