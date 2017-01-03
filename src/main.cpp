@@ -2,21 +2,37 @@
 // Created by tag on 03/01/17.
 //
 
-#include <iostream>
 #include "config.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <iostream>
+
+volatile sig_atomic_t flag = 1;
+void interrupt(int sig){
+    flag = 0; // set flag
+}
+
 int main(){
+    // Register signals
+    signal(SIGINT, interrupt);
+    signal(SIGTERM,interrupt);
 
-    // Creation du server
+    // Creation du serveur
 
-    // Reception des string
+    while(flag) {
+        // Reception des string
 
-    // Cryptage
+        // Cryptage
+        CryptoTools::exampleFunction();
 
-    // Transformation en morse
+        // Transformation en morse
 
-    // Envoi au GPIO
+        // Envoi au GPIO
         // Envoi cadencé
+    }
 
+    // Fermeture du serveur
     std::cout << "Hello World! ";
 }
