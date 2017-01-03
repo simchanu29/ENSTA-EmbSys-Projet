@@ -1,0 +1,3 @@
+[submodule "toolchains/armadeus"]
+	path = toolchains/armadeus
+	url = https://github.com/pblottiere/armadeus.git
