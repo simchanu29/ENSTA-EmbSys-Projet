@@ -1,4 +1,5 @@
-cmake_minimum_required()
+cmake_minimum_required(VERSION 3.3)
+set (CMAKE_CXX_STANDARD 11)
 project(Armadeus-Morse)
 
 # Set up the build directory
