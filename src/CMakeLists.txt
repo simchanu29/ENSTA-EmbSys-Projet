@@ -9,7 +9,12 @@ set(SOURCE_MAIN
         ${TOOLS})
 
 # Main
-add_executable(out.o ${SOURCE_MAIN})
+add_executable(out.out ${SOURCE_MAIN})
 
 # Units tests
-add_executable(unitTest_tools.o ${TOOLS} tests/unitTest_tools.cpp)
+add_executable(unitTest_tools.out ${TOOLS} tests/unitTest_tools.cpp)
+
+# Units tests
+add_executable(client.out  tests/client.c)
+# Units tests
+add_executable(server.out  tests/server.c)
