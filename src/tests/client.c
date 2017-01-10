@@ -29,33 +29,33 @@ int main(int argc, char *argv[])
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
-	
-	// initialisation
+    int tour=0;	
     char buffer[256];
-    if (argc < 3) {
-       fprintf(stderr,"usage %s hostname port\n", argv[0]);
-       exit(0);
-    }
-    portno = atoi(argv[2]);
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) 
-        error("ERROR opening socket");
-    server = gethostbyname(argv[1]);
-    if (server == NULL) {
-        fprintf(stderr,"ERROR, no such host\n");
-        exit(0);
-    }
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *)server->h_addr, 
-         (char *)&serv_addr.sin_addr.s_addr,
-         server->h_length);
-    serv_addr.sin_port = htons(portno);
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
-        error("ERROR connecting");
-        
-    int tour=0;
-    while(1){
+    
+     while(1){
+	// initialisation
+    	if (argc < 3) {
+       		fprintf(stderr,"usage %s hostname port\n", argv[0]);
+       		exit(0);
+    		}
+    	portno = atoi(argv[2]);
+    	sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    	if (sockfd < 0) 
+        	error("ERROR opening socket");
+    	server = gethostbyname(argv[1]);
+    	if (server == NULL) {
+        	fprintf(stderr,"ERROR, no such host\n");
+        	exit(0);
+    	}
+    	bzero((char *) &serv_addr, sizeof(serv_addr));
+    	serv_addr.sin_family = AF_INET;
+    	bcopy((char *)server->h_addr, 
+         	(char *)&serv_addr.sin_addr.s_addr,
+         	server->h_length);
+    	serv_addr.sin_port = htons(portno);
+    	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
+        	error("ERROR connecting");
+   
     	tour++;
     	//printf("Please enter the message: ");
     	usleep(20000);// cadencé à 50Hz
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     	bzero(buffer,256);
     	n = read(sockfd,buffer,255);
     	if (n < 0) 
-         error("ERROR reading from socket");
+         	error("ERROR reading from socket");
     	printf("%s\n",buffer);
     }
     close(sockfd);
