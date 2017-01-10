@@ -4,6 +4,11 @@
 
 #pragma once
 
-class morseTools {
+#include <iostream>
+
+class MorseTools
+{
+public:
+    static std::string morsiphy(std::string msg);
 
 };

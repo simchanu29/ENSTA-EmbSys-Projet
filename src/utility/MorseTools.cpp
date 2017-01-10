@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
 
-std::string morsiphy(std::string myString){
+#include "MorseTools.h"
+
+std::string MorseTools::morsiphy(std::string myString){
 
     std::string latin;
     char latinAlphabet[29] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','.',',',' '};
@@ -24,8 +24,10 @@ std::string morsiphy(std::string myString){
         
 return morse;
    }
+
+/*
 int main()
 {
 	std::string result=morsiphy("kaaris");
 	std::cout<<result;
-}
+}*/

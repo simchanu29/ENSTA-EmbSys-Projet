@@ -12,5 +12,7 @@ int main(int argc, char *argv[])
     std::string msg = CryptoTools::cryptCesar(txt,13);
     printf("%s\n",txt.c_str());
     printf("%s\n",msg.c_str());
+    std::string result=MorseTools::morsiphy("kaaris");
+    std::cout<<result;
     fflush(stdout);
 }
