@@ -11,15 +11,15 @@ std::string CryptoTools::cryptCesar(std::string msg, int decalage)
     std::string sig;
     char lettre = msg[compt];
     int let;
-    while(lettre)
+    while(lettre )
     {
         if(lettre!=' ')
         {
             let = lettre;
             let = (let + decalage - 'a') % 26 + 'a';
-            sig[compt] = (char) let;
+            sig += (char) let;
         } else
-            sig[compt] = lettre;
+            sig += lettre;
 
 
         compt++;
