@@ -8,27 +8,35 @@
 
 int main(int argc, char *argv[])
 {
+	init(argc, argv);
     std::string txt = "test morse";
-    std::string msg = CryptoTools::cryptCesar(txt,13);
-    printf("texte a lorigine : %s\n",txt.c_str());
-    printf("apres cryptage : %s\n",msg.c_str());
-    std::string m=MorseTools::latin2Mors(msg);
-    printf("code morse : %s\n",m.c_str());
-    std::vector<int> res;
-    res = MorseTools::mors2Bin(m);
-    for(unsigned i=1;i<=res.size();i++)
-    {
-        std::cout<<res[i];
+    
+    while(1){
+    
+    	txt = (std::string)wait_connection();
+    
+    	std::string msg = CryptoTools::cryptCesar(txt,13);
+    	printf("texte a lorigine : %s\n",txt.c_str());
+    	printf("apres cryptage : %s\n",msg.c_str());
+    	std::string m=MorseTools::latin2Mors(msg);
+    	printf("code morse : %s\n",m.c_str());
+    	std::vector<int> res;
+    	res = MorseTools::mors2Bin(m);
+    	for(unsigned i=1;i<=res.size();i++)
+    	{
+        	std::cout<<res[i];
+    	}
+
+
+    	printf("\net on retourne a la case depart ! \n");
+    	std::string m2 = MorseTools::bin2Mors(res);
+    	printf("code morse : %s\n",m2.c_str());
+    	std::string cod = MorseTools::mors2Latin(m2);
+    	printf("texte codee : %s\n",cod.c_str());
+    	std::string fin = CryptoTools::cryptCesar(cod,26-13);
+    	printf("texte retrouve : %s\n",fin.c_str());
+
+    	fflush(stdout);
+    
     }
-
-
-    printf("\net on retourne a la case depart ! \n");
-    std::string m2 = MorseTools::bin2Mors(res);
-    printf("code morse : %s\n",m2.c_str());
-    std::string cod = MorseTools::mors2Latin(m2);
-    printf("texte codee : %s\n",cod.c_str());
-    std::string fin = CryptoTools::cryptCesar(cod,26-13);
-    printf("texte retrouve : %s\n",fin.c_str());
-
-    fflush(stdout);
 }

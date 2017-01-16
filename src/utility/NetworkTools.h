@@ -4,6 +4,7 @@
 
 #pragma once
 
-class networkTools {
+int init(int argc, char *argv[]);
 
-};
+char* wait_connection();
+void close_connection();

@@ -16,5 +16,10 @@ avec les commandes:
 ./server.out 51717
 ./client.out localhost 51717 "le message..."
 
+Le fichier unitest joue le role de serveur et produit le morse
+./unitest.out 51717
+./client.out localhost 51717 "le message..."
+
+
 On peut modifier le port qui est ici 51717, il faut seulement que le port soit libre
 localhost est utilisé lorsque le serveur tourne sur la même machine que le client

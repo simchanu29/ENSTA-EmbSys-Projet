@@ -21,7 +21,7 @@ deux terminals différents avec les commandes:
 
 
 
-void error(const char *msg)
+void erreur(const char *msg)
 {
     perror(msg);
     exit(1);
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	
 	 sockfd = socket(AF_INET, SOCK_STREAM, 0);
      if (sockfd < 0) 
-         error("ERROR opening\n");
+         erreur("ERROR opening\n");
          
      //if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
      //	error("setsockopt(SO_REUSEADDR) failed");
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
      serv_addr.sin_port = htons(portno);
 	 if (bind(sockfd, (struct sockaddr *) &serv_addr,
               sizeof(serv_addr)) < 0)
-              	error("ERROR on binding\n");
+              	erreur("ERROR on binding\n");
      
      
      
