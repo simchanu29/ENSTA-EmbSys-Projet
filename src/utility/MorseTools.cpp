@@ -1,4 +1,5 @@
 
+#include <tuple>
 #include "MorseTools.h"
 
 template<typename T, size_t N>
@@ -14,9 +15,6 @@ std::string MorseTools::morsiphy(std::string myString){
     std::vector<std::string> morseAlphabet(a, end(a));
     std::string mrs;
     latin = "";
-    int c = myString.length();
-    int c1 = morseAlphabet.size();
-    int c2 = sizeof(latinAlphabet);
     for (unsigned i = 0; i<myString.length(); ++i)
     {
         for (int counter = 0; counter < morseAlphabet.size(); counter++)
@@ -68,8 +66,53 @@ std::vector<int> MorseTools::mors2Bin(std::string morse)
 }
 
 
+std::string MorseTools::bin2Morse(std::vector<int> bin)
+{
+    std::string morse;
+    int last;
+    int compteur = 0;
+    int nb;
+    int current;
+    last = 1;
+    while(bin.at(compteur)==0)
+    {
+        compteur++;
+    }
+    for (int i = compteur;  i <bin.size() ; i++)
+    {
+        current = bin.at(i);
+        if(current==-1)
+            break;
+        if(current==last)
+        {
+            nb++;
+        }
+        else
+        {
+            if(last ==1 && nb == 1)
+            {
+                morse+=".";
+            }
+            else if(last ==1 && nb == 3)
+            {
+                morse+="-";
+            }
+            else if(last ==0 && nb == 3)
+            {
+                morse+="|";
+            }
+            else if (last ==0 && nb == 7)
+            {
+                morse+="|_|";
+            }
+            nb = 1;
+        }
+        last = current;
 
-
+    }
+    morse+="|";
+    return morse;
+}
 
 
 

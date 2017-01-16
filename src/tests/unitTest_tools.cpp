@@ -20,5 +20,8 @@ int main(int argc, char *argv[])
     {
         std::cout<<res[i];
     }
+    printf("et on retourne a la case depart ! \n");
+    std::string m2 = MorseTools::bin2Morse(res);
+    printf("code morse : %s\n",m2.c_str());
     fflush(stdout);
 }
