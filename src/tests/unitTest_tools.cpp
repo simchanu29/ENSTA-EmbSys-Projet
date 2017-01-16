@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 {
 	init(argc, argv);
     std::string txt = "test morse";
-<<<<<<< HEAD
     
     while(1){
     
@@ -43,6 +42,7 @@ int main(int argc, char *argv[])
     
     }
 }
+/*
 =======
     int key = 13;
     std::string msg = CryptoTools::cryptCesar(txt,key);
@@ -159,4 +159,3 @@ return 0;
 */
 
 
->>>>>>> d1a2a60cff2a2c8c13b232cac481eeb6c3074e1d
