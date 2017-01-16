@@ -10,7 +10,9 @@
 class MorseTools
 {
 public:
-    static std::string morsiphy(std::string msg);
+    static std::string latin2Mors(std::string msg);
     static std::vector<int> mors2Bin(std::string morse);
+    static std::string bin2Mors(std::vector<int> bin);
+    static std::string mors2Latin(std::string morse);
 
 };
