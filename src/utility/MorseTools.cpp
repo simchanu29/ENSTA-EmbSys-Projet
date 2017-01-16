@@ -7,13 +7,12 @@ T * end(T (&ra)[N]) {
     return ra + N;
 }
 
-std::string MorseTools::morsiphy(std::string myString){
+std::string MorseTools::latin2Mors(std::string myString){
 
     std::string latin;
-    const char* a[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".-.-.-",".-.-", "_" };
-    char latinAlphabet[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','.',',',' '};
+    const char* a[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".-.-.-", ".-.-", "_" };
+    char latinAlphabet[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', ',', ' '};
     std::vector<std::string> morseAlphabet(a, end(a));
-    std::string mrs;
     latin = "";
     for (unsigned i = 0; i<myString.length(); ++i)
     {
@@ -66,7 +65,7 @@ std::vector<int> MorseTools::mors2Bin(std::string morse)
 }
 
 
-std::string MorseTools::bin2Morse(std::vector<int> bin)
+std::string MorseTools::bin2Mors(std::vector<int> bin)
 {
     std::string morse;
     int last;
@@ -115,10 +114,37 @@ std::string MorseTools::bin2Morse(std::vector<int> bin)
 }
 
 
-
-/*
-int main()
+std::string MorseTools::mors2Latin(std::string morse)
 {
-	std::string result=morsiphy("kaaris");
-	std::cout<<result;
-}*/
+    const char* a[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".-.-.-", ".-.-", "_" };
+    char latinAlphabet[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', ',', ' '};
+    std::string latin;
+    std::vector<std::string> mrs;
+    std::string m = "";
+    for (int i = 0; i <morse.length() ; i++)
+    {
+        if(morse.at(i) ==  '|')
+        {
+            mrs.push_back(m);
+            m = "";
+        }
+        else
+        {
+            m+=morse.at(i);
+        }
+    }
+
+    for (std::string s : mrs)
+    {
+        for (int i = 0; i < 29; i++)
+        {
+            const char* ai = a[i];
+            if(s==ai)
+            {
+                latin+=latinAlphabet[i];
+            }
+        }
+    }
+
+    return latin;
+}
