@@ -14,7 +14,7 @@ On peut executer les executables. Pour le client serveur,
 il faut lancer les serveur dans un terminal, puis le client dans un autre,
 avec les commandes:
 ./server.out 51717
-./client.out localhost 51717
+./client.out localhost 51717 "le message..."
 
 On peut modifier le port qui est ici 51717, il faut seulement que le port soit libre
 localhost est utilisé lorsque le serveur tourne sur la même machine que le client

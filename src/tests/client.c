@@ -32,10 +32,10 @@ int main(int argc, char *argv[])
     int tour=0;	
     char buffer[256];
     
-     while(1){
+    //while(1){
 	// initialisation
-    	if (argc < 3) {
-       		fprintf(stderr,"usage %s hostname port\n", argv[0]);
+    	if (argc < 4) {
+       		fprintf(stderr,"usage %s hostname port messahe\n", argv[0]);
        		exit(0);
     		}
     	portno = atoi(argv[2]);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     	//printf("Please enter the message: ");
     	usleep(20000);// cadencé à 50Hz
     	bzero(buffer,256);
-    	sprintf(buffer,"envoi %d",tour);
+    	sprintf(buffer,argv[3],tour);
     	//fgets(buffer,255,stdin);
     	n = write(sockfd,buffer,strlen(buffer));
     	if (n < 0) 
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     	if (n < 0) 
          	error("ERROR reading from socket");
     	printf("%s\n",buffer);
-    }
+    //}
     close(sockfd);
     return 0;
 }
