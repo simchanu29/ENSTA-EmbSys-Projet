@@ -14,7 +14,7 @@ add_executable(out.out ${SOURCE_MAIN})
 # Units tests
 add_executable(unitTest_tools.out ${TOOLS} tests/unitTest_tools.cpp)
 
-# Units tests
+# Units test client
 add_executable(client.out  tests/client.c)
-# Units tests
+# Units test server
 add_executable(server.out  tests/server.c)

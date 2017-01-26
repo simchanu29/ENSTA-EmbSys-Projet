@@ -13,7 +13,7 @@ set(ARMADEUS_BOARD            "APF27")
 set(ARMADEUS_UCLIBC_VERSION   "0.9.29")
 
 # set the Armadeus root path
-set(ARMADEUS_ROOT             "/path/to/your/armadeus/sdk")
+set(ARMADEUS_ROOT             ${CMAKE_CURRENT_SOURCE_DIR}/toolchains/armadeus)
 
 ## ---- CMake subsection ----
 # this one is important

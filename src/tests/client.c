@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
+//TODO : Deplacer ça dans un folder network
 
 /*
 Compilation sans librairie
@@ -29,33 +30,50 @@ int main(int argc, char *argv[])
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
-    int tour=0;	
+    int tour=0;
     char buffer[256];
-    
-    //while(1){
-	// initialisation
+
+    while(1){
+	    // initialisation
+
     	if (argc < 4) {
        		fprintf(stderr,"usage %s hostname port messahe\n", argv[0]);
        		exit(0);
-    		}
+    	}
+
+    	// Open socket
     	portno = atoi(argv[2]);
     	sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    	if (sockfd < 0) 
+
+    	if (sockfd < 0)
+    	{
         	error("ERROR opening socket");
+        }
+
+        //Get Host name
     	server = gethostbyname(argv[1]);
-    	if (server == NULL) {
+
+    	if (server == NULL)
+    	{
         	fprintf(stderr,"ERROR, no such host\n");
         	exit(0);
     	}
+
+    	//Set up server
     	bzero((char *) &serv_addr, sizeof(serv_addr));
     	serv_addr.sin_family = AF_INET;
-    	bcopy((char *)server->h_addr, 
+    	bcopy((char *)server->h_addr,
          	(char *)&serv_addr.sin_addr.s_addr,
          	server->h_length);
+
     	serv_addr.sin_port = htons(portno);
-    	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
+
+    	//Connect
+    	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0)
+    	{
         	error("ERROR connecting");
-   
+        }
+
     	tour++;
     	//printf("Please enter the message: ");
     	usleep(20000);// cadencé à 50Hz
@@ -63,14 +81,20 @@ int main(int argc, char *argv[])
     	sprintf(buffer,argv[3],tour);
     	//fgets(buffer,255,stdin);
     	n = write(sockfd,buffer,strlen(buffer));
-    	if (n < 0) 
+
+    	if (n < 0) {
          	error("ERROR writing to socket");
+    	}
+
     	bzero(buffer,256);
     	n = read(sockfd,buffer,255);
-    	if (n < 0) 
+
+    	if (n < 0)
+        {
          	error("ERROR reading from socket");
+    	}
     	printf("%s\n",buffer);
-    //}
+    }
     close(sockfd);
     return 0;
 }

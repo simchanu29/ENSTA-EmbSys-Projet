@@ -9,7 +9,6 @@
 #include <sstream>
 #include "GpioTools.h"
 
-
 GpioTools::GpioTools()
 {
     this->gpionum = "4"; //GPIO4 is default
