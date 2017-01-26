@@ -27,11 +27,15 @@ localhost est utilisé lorsque le serveur tourne sur la même machine que le cli
 
 ## Installation de la raspberry
 ### Configuration du proxy
-voir le share de Lebars en particulier les exports et les acquire  
-Dans le cas du wifi modifier wpa_supplicant.conf  
+voir le share de Lebars en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole
+Dans le cas du wifi modifier wpa_supplicant.conf 
 ```
 network={
         ssid=""
         psk=""
-        }
-        ```
+}
+```
+
+### Mise a jour  
+sudo apt-get update  
+sudo apt-get upgrade 
