@@ -28,7 +28,10 @@ ___
 
 ## Installation de la raspberry
 ### Configuration du proxy
-voir le share de Lebars en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole
+Voir le share de Lebars, en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole.
+```
+http://www.ensta-bretagne.fr/lebars/Share/Ubuntu.txt
+```
 Dans le cas du wifi modifier wpa_supplicant.conf 
 ```
 network={
