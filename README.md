@@ -60,4 +60,4 @@ https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-par
 Ces tutoriels utilisent une version précompilée de la toolchain, par conséquent aucune compilation n'est nécessaire.
 
 ## Troubleshooting
- - Le code contiens des parties valides uniquement sous C++11, par conséquent il faut g++ 4.6 lors de la compilation
+ - Le code contiens des parties valides uniquement sous C++11, par conséquent il faut g++ 4.6 ou plus lors de la compilation
