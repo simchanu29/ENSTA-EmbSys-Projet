@@ -43,3 +43,10 @@ sudo apt-get update  
 sudo apt-get upgrade
 sudo apt-get install git 
 ```
+
+# Cross compilation
+On utilise les tutoriels suivants :  
+https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-i/  
+https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-ii/  
+
+Ces tutoriels utilisent une version précompilée de la toolchain, par conséquent aucune compilation n'est nécessaire.
