@@ -24,6 +24,7 @@ Le fichier unitest joue le role de serveur et produit le morse
 On peut modifier le port qui est ici 51717, il faut seulement que le port soit libre
 localhost est utilisé lorsque le serveur tourne sur la même machine que le client
 
+___
 
 ## Installation de la raspberry
 ### Configuration du proxy
@@ -31,11 +32,14 @@ voir le share de Lebars en particulier les exports et les acquire pour la config
 Dans le cas du wifi modifier wpa_supplicant.conf 
 ```
 network={
-        ssid=""
-        psk=""
+        ssid="your_ssid"
+        psk="your_passwd"
 }
 ```
 
 ### Mise a jour  
+```
 sudo apt-get update  
-sudo apt-get upgrade 
+sudo apt-get upgrade
+sudo apt-get install git 
+```
