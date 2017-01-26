@@ -1,5 +1,7 @@
 # ENSTA-EmbSys-Projet
-Projet de système embarqué à l'ENSTA Bretagne
+##### Projet de système embarqué à l'ENSTA Bretagne
+
+## Compilation avec cmake
 
 Pour compiler les fichier, creer un répertoire de compilation, 
 par exemple cmake-build-debug, se placer dans ce dossier
@@ -28,7 +30,10 @@ ___
 
 ## Installation de la raspberry
 ### Configuration du proxy
-voir le share de Lebars en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole
+Voir le share de Lebars, en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole.
+```
+http://www.ensta-bretagne.fr/lebars/Share/Ubuntu.txt
+```
 Dans le cas du wifi modifier wpa_supplicant.conf 
 ```
 network={
@@ -43,10 +48,16 @@ sudo apt-get update  
 sudo apt-get upgrade
 sudo apt-get install git 
 ```
-
-# Cross compilation
+Pour cloner le code il suffit de faire : 
+```
+git clone https://github.com/simchanu29/ENSTA-EmbSys-Projet.git
+```
+## Cross compilation
 On utilise les tutoriels suivants :  
 https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-i/  
 https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-ii/  
 
 Ces tutoriels utilisent une version précompilée de la toolchain, par conséquent aucune compilation n'est nécessaire.
+
+## Troubleshooting
+ - Le code contiens des parties valides uniquement sous C++11, par conséquent il faut g++ 4.6 ou plus lors de la compilation
