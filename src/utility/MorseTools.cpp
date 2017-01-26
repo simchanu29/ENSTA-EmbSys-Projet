@@ -16,7 +16,7 @@ std::string MorseTools::latin2Mors(std::string myString){
     latin = "";
     for (unsigned i = 0; i<myString.length(); ++i)
     {
-        for (int counter = 0; counter < morseAlphabet.size(); counter++)
+        for (int counter = 0; counter < static_cast<int>(morseAlphabet.size()); counter++)
         {
                 if (myString.at(i) == latinAlphabet[counter])
                 {
@@ -77,7 +77,7 @@ std::string MorseTools::bin2Mors(std::vector<int> bin)
     {
         compteur++;
     }
-    for (int i = compteur;  i <bin.size() ; i++)
+    for (int i = compteur;  i < static_cast<int>(bin.size()) ; i++)
     {
         current = bin.at(i);
         if(current==-1)
@@ -121,7 +121,7 @@ std::string MorseTools::mors2Latin(std::string morse)
     std::string latin;
     std::vector<std::string> mrs;
     std::string m = "";
-    for (int i = 0; i <morse.length() ; i++)
+    for (int i = 0; i < static_cast<int>(morse.length()) ; i++)
     {
         if(morse.at(i) ==  '|')
         {
