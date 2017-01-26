@@ -1,5 +1,7 @@
 # ENSTA-EmbSys-Projet
-Projet de système embarqué à l'ENSTA Bretagne
+##### Projet de système embarqué à l'ENSTA Bretagne
+
+## Compilation avec cmake
 
 Pour compiler les fichier, creer un répertoire de compilation, 
 par exemple cmake-build-debug, se placer dans ce dossier
