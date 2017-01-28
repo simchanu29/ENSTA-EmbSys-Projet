@@ -5,7 +5,7 @@
 #pragma once
 
 // Tools
-#include "CryptoTools.h"
-#include "GpioTools.h"
-#include "MorseTools.h"
-#include "NetworkTools.h"
+#include "utility/CryptoTools.h"
+#include "utility/GpioTools.h"
+#include "utility/MorseTools.h"
+#include "utility/NetworkTools.h"
