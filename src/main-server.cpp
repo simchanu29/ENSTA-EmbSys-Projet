@@ -2,18 +2,32 @@
 // Created by tag on 03/01/17.
 //
 
-#include "../config.h"
-
+#include "config.h"
 #include <stdio.h>
-
 #include <unistd.h>
 
+volatile sig_atomic_t flag = 1;
+void interrupt(int sig){
+	flag = 0; // set flag
+}
+
+/**
+ * USAGE
+ * ./main-server.out 51717
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[])
 {
+    // Register signals
+    signal(SIGINT, interrupt);
+    signal(SIGTERM,interrupt);
+
 	init(argc, argv);
     std::string txt = "test morse";
     
-    while(1){
+    while(flag){
     
     	txt = (std::string)wait_connection();
     	    	
@@ -30,16 +44,13 @@ int main(int argc, char *argv[])
         	std::cout<<res[i];
     	}
 
-
-    	printf("\net on retourne a la case depart ! \n");
+		printf("\net on retourne a la case depart ! \n");
     	std::string m2 = MorseTools::bin2Mors(res);
     	printf("code morse : %s\n",m2.c_str());
     	std::string cod = MorseTools::mors2Latin(m2);
     	printf("texte codee : %s\n",cod.c_str());
     	std::string fin = CryptoTools::cryptCesar(cod,26-key);
     	printf("texte retrouve : %s\n",fin.c_str());
-
-
 
     	std::string inputstate;
     	GpioTools* gpio4 = new GpioTools("4"); //create new GPIO object to be attached to  GPIO4
@@ -78,6 +89,8 @@ int main(int argc, char *argv[])
     	fflush(stdout);
     
     }
+
+    close_connection();
 }
 
 

@@ -69,11 +69,7 @@ int init(int argc, char *argv[])
          
      return 0;
 }
-         
-     
-     
-     
-     
+
 char* wait_connection(){
      tour++;
      usleep(20000);
@@ -88,11 +84,11 @@ char* wait_connection(){
      }
      	
      bzero(buffer,256);
-     n = read(newsockfd,buffer,255);
+     n = (int) read(newsockfd, buffer, 255);
      	
      //printf("Here is the message: %s\n",buffer);
      sprintf(reponse, "I got your message %d",tour);
-     n = write(newsockfd,reponse,strlen(reponse));
+     n = (int) write(newsockfd, reponse, strlen(reponse));
      
      return buffer;
 }
