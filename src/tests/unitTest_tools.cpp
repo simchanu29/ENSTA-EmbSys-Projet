@@ -7,13 +7,36 @@
 #include <stdio.h>
 
 #include <unistd.h>
+#include <csignal>
 
+/**
+ * Flag pour la boucle while du main
+ */
+volatile sig_atomic_t flag = 1;
+
+/**
+ * Interrution pour interrompre le while du main
+ * @param sig
+ */
+void interrupt(int sig){
+	flag = 0; // set flag
+}
+
+/**
+ * Testing main
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[])
 {
 	init(argc, argv);
     std::string txt = "test morse";
     
-    while(1){
+    while(flag){
+        // Register signals
+        signal(SIGINT, interrupt);
+        signal(SIGTERM,interrupt);
     
     	txt = (std::string)wait_connection();
     

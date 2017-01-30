@@ -6,13 +6,28 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/**
+ * Flag pour la boucle while du main
+ */
 volatile sig_atomic_t flag = 1;
+
+/**
+ * Interrution pour interrompre le while du main
+ * @param sig
+ */
 void interrupt(int sig){
 	flag = 0; // set flag
 }
 
+
+
 /**
+ * Server. Il reçoit le signal du client et le code pour le renvoyer au GPIO.
+ *
  * USAGE
+ * ./main-server.out port
+ *
+ * EXEMPLE
  * ./main-server.out 51717
  * @param argc
  * @param argv
@@ -28,41 +43,46 @@ int main(int argc, char *argv[])
     std::string txt = "test morse";
     
     while(flag){
-    
+
+        // Reception de la phrase du client
     	txt = (std::string)wait_connection();
-    	    	
+
+        // Cryptage césar
     	int key = 13;
     	std::string msg = CryptoTools::cryptCesar(txt,key);
-    	printf("texte a lorigine : %s\n",txt.c_str());
-    	printf("apres cryptage : %s\n",msg.c_str());
-    	std::string m=MorseTools::latin2Mors(msg);
-    	printf("code morse : %s\n",m.c_str());
-    	std::vector<int> res;
+        printf("texte a lorigine : %s\n",txt.c_str());
+        printf("apres cryptage : %s\n",msg.c_str());
+
+        // Transcription en morse
+        std::string m=MorseTools::latin2Mors(msg);
+        printf("code morse : %s\n",m.c_str());
+
+        // Transcription en binaire
+        std::vector<int> res;
     	res = MorseTools::mors2Bin(m);
     	for(unsigned i=1;i<=res.size();i++)
-    	{
-        	std::cout<<res[i];
-    	}
+        {
+            std::cout<<res[i];
+        }
 
-		printf("\net on retourne a la case depart ! \n");
-    	std::string m2 = MorseTools::bin2Mors(res);
-    	printf("code morse : %s\n",m2.c_str());
-    	std::string cod = MorseTools::mors2Latin(m2);
-    	printf("texte codee : %s\n",cod.c_str());
-    	std::string fin = CryptoTools::cryptCesar(cod,26-key);
-    	printf("texte retrouve : %s\n",fin.c_str());
+            // DEBUG
+            printf("\net on retourne a la case depart ! \n");
+            std::string m2 = MorseTools::bin2Mors(res);
+            printf("code morse : %s\n",m2.c_str());
+            std::string cod = MorseTools::mors2Latin(m2);
+            printf("texte codee : %s\n",cod.c_str());
+            std::string fin = CryptoTools::cryptCesar(cod,26-key);
+            printf("texte retrouve : %s\n",fin.c_str());
 
+        // Ecriture sur les GPIO
     	std::string inputstate;
     	GpioTools* gpio4 = new GpioTools("4"); //create new GPIO object to be attached to  GPIO4
 
     	gpio4->export_gpio(); //export GPIO4
-
     	std::cout << " GPIO pins exported" << std::endl;
 
     	gpio4->setdir_gpio("out"); // GPIO17 set to input
-
     	std::cout << " Set GPIO pin directions" << std::endl;
-
 
     	for(int i : res)
     	{
@@ -85,7 +105,7 @@ int main(int argc, char *argv[])
 
     	std::cout << "Exiting....." << std::endl;
 
-
+        // Affichage du texte
     	fflush(stdout);
     
     }
