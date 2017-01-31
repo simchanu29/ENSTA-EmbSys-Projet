@@ -1,11 +1,20 @@
 # ENSTA-EmbSys-Projet
 ##### Projet de système embarqué à l'ENSTA Bretagne
 
+## Sommaire
+
+__1.__ [Installation](#installation)  
+
+__2.__ [Utilisation](#utilisation)  
+
+__3.__ [Informations annexes](#informations-annexes)  
+
 ## Utilisation
 
-__1.__ Connecter l'ordinateur avec un switch à la raspberry
-
+__1.__ Connecter l'ordinateur avec un switch à la raspberry  
 __2.__ Lancer `main-client.out adresse message`
+
+## Compilation
 
 ## Compilation avec cmake
 
@@ -62,15 +71,29 @@ cd ENSTA-EmbSys-Projet
 ```
 
 ### Mise en place d'une adresse ip statique
+On utilise le tutoriel suivant :  
+http://www.framboise314.fr/allouer-une-adresse-ip-fixe-au-raspberry/  
 
+Dans notre cas nous avons alloués l'adresse ip `192.168.1.20`
 
+## Informations annexes<a name="informations-annexes" />
 
-## Cross compilation
+### Cross compilation
 On utilise les tutoriels suivants :  
 https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-i/  
 https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-ii/  
 
 Ces tutoriels utilisent une version précompilée de la toolchain, par conséquent aucune compilation n'est nécessaire.
 
-## Troubleshooting
+### Générer la documentation
+Pour générer la documentation il faut utiliser doxygen.  
+```
+sudo apt-get install doxygen
+```
+Puis de le lancer avec le fichier de configuration à la racine du projet
+```
+doxygen dConfig.doxygen
+```
+
+### Troubleshooting
  - Le code contiens des parties valides uniquement sous C++11, par conséquent il faut g++ 4.6 ou plus lors de la compilation
