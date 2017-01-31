@@ -71,24 +71,30 @@ Dans notre cas nous utilisons `192.168.1.21`
 #### Compilation avec cmake sur la raspberry
 
 Pour compiler les fichier, creer un répertoire de compilation, 
-par exemple cmake-build-debug, se placer dans ce dossier
+par exemple `cmake-build-debug`, se placer dans ce dossier
 et lancer les commandes:
+```
 cmake ..
 make
+```
 
-Cela va permettre de générer les fichiers intermédiaire dans le dossier cmake-build-debug.
-Les executables seront générés dans un dossier build.
+Cela va permettre de générer les fichiers intermédiaire dans le dossier `cmake-build-debug`.
+Les executables seront générés dans un dossier `build`.
 
 On peut executer les executables. 
 Il faut lancer les serveur dans un terminal, puis le client dans un autre,
 avec les commandes:
+```
 ./server.out
 ./client.out localhost "le message..."
+```
 
-On peut modifier le port utilisé qui est ici 51717, il faut seulement que le port soit libre
+On peut modifier le port utilisé qui est ici `51717`, il faut seulement que le port soit libre
 localhost est utilisé lorsque le serveur tourne sur la même machine que le client
 
-#### cross-compilation avec cmake 
+#### Cross-compilation avec cmake 
+
+Il faut pour cela modifier le ...
 
 ___
 

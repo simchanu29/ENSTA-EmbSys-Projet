@@ -17,7 +17,7 @@ set(CMAKE_CACHEFILE_DIR ${dir})
 # Cross compilation
 # Comment this if not necessary
 #set(CMAKE_TOOLCHAIN_FILE Toolschains/armadeus.cmake)
-
+#set(CMAKE_TOOLCHAIN_FILE Toolschains/raspberry.cmake)
 
 # Compilation of sources
 add_subdirectory(src)
