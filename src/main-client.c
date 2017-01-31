@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 
     // Set up string to send
     bzero(buffer,256);
-    sprintf(buffer,argv[3],tour);
+    sprintf(buffer,argv[3]);
 
     // Send string to server
     n = write(sockfd,buffer,strlen(buffer));

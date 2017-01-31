@@ -27,21 +27,3 @@ std::string CryptoTools::cryptCesar(std::string msg, int decalage)
     }
     return sig;
 }
-
-
-int* CryptoTools::char2morse(char letter)
-{
-    int* m;
-    switch (letter){
-        case 'a' : m = 0; //
-        default  : m = 0;
-    }
-
-    return NULL;
-}
-
-int CryptoTools::exampleFunction()
-{
-    printf("test\n");
-    return 0;
-}

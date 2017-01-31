@@ -6,47 +6,68 @@
 
 #include <string>
 
+/**
+ * Toolbox for GPIO handling for Raspberry Pi
+ */
 class GpioTools
 {
 public:
     /**
-     * Constructeur basique de GpioTools
+     * FR : Constructeur basique de GpioTools
+     * EN : Create a GPIO object that controls GPIO4 (default)
      */
-    GpioTools();  // create a GPIO object that controls GPIO4 (default
+    GpioTools();
 
-    GpioTools(std::string x); // create a GPIO object that controls GPIOx, where x is passed to this constructor
+    /**
+     * Create a GPIO object that controls GPIOx, where x is passed to this constructor
+     * @param x
+     */
+    GpioTools(std::string x);
 
 
     /**
-     * Set a gpio pin output or input
+     * Exports GPIO
      * @param dir
      * @return
      */
-    int export_gpio(); // exports GPIO
-
-
-    int unexport_gpio(); // unexport GPIO
-    int setdir_gpio(std::string dir); // Set GPIO Direction
+    int export_gpio();
 
     /**
-     * Set the value of a gpio pin
+     * unexport GPIO
+     * @return
+     */
+    int unexport_gpio();
+
+    /**
+     * Set GPIO Direction
+     * @param dir
+     * @return
+     */
+    int setdir_gpio(std::string dir);
+
+    /**
+     * Set GPIO Value (output pins)
      * @param val
      * @return
      */
-    int setval_gpio(std::string val); // Set GPIO Value (putput pins)
+    int setval_gpio(std::string val);
 
     /**
-     * Get the value of a gpio pin
+     * Get GPIO Value (input/ output pins)
      * @param val
      * @return
      */
-    int getval_gpio(std::string& val); // Get GPIO Value (input/ output pins)
+    int getval_gpio(std::string& val);
 
     /**
      * Getter for active gpio pin
+     * Return the GPIO number associated with the instance of an object
      * @return
      */
-    std::string get_gpionum(); // return the GPIO number associated with the instance of an object
+    std::string get_gpionum(); //
 private:
-    std::string gpionum; // GPIO number associated with the instance of an object
+    /**
+     * GPIO number associated with the instance of an object
+     */
+    std::string gpionum;
 };

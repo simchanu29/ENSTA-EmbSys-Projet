@@ -11,14 +11,14 @@ public:
     /**
      * Initialize server connection
      * @param argc
-     * @param argv
+     * @param argv : message [port]
      * @return success
      */
      static int initServer(int argc, char *argv[]);
 
     /**
      * Wait for any communication from client.
-     * @return buffer
+     * @return buffer : message received by the server
      */
     static char *wait_connection();
 

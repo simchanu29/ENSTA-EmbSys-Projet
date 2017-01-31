@@ -6,10 +6,17 @@
 
 #include <iostream>
 
+/**
+ * Toolbox for handling cryptography
+ */
 class CryptoTools
 {
 public:
+    /**
+     * Cryptage césar
+     * @param msg : message à coder
+     * @param decalage
+     * @return message crypté
+     */
     static std::string cryptCesar(std::string msg, int decalage);
-    static int* char2morse(char letter);
-    static int exampleFunction();
 };
