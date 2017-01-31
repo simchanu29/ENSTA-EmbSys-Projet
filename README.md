@@ -4,6 +4,7 @@
 ## Utilisation
 
 __1.__ Connecter l'ordinateur avec un switch à la raspberry
+
 __2.__ Lancer `main-client.out adresse message`
 
 ## Compilation avec cmake
