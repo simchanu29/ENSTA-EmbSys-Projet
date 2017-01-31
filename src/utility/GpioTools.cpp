@@ -9,12 +9,15 @@
 #include <sstream>
 #include "GpioTools.h"
 
-
 GpioTools::GpioTools()
 {
     this->gpionum = "4"; //GPIO4 is default
 }
 
+/**
+ * Constructeur de GpioTools pour spécifier le pin de sortie
+ * @param gnum
+ */
 GpioTools::GpioTools(std::string gnum)
 {
     this->gpionum = gnum;  //Instatiate GpioTools object for GPIO pin number "gnum"

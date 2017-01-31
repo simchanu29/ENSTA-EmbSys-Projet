@@ -41,23 +41,19 @@ int n;
 int tour=0;
 char reponse[256];
 
-
-int init(int argc, char *argv[])
+int NetworkTools::initServer(int argc, char *argv[])
 {
-    
-     
+
      if (argc < 2) {
-         fprintf(stderr,"ERROR, no port provided\n");
-         exit(1);
+         portno = 51717;
+         printf("Default port : %d",portno);
+     } else{
+        portno = atoi(argv[1]);
      }
-     portno = atoi(argv[1]);
-	
+
 	 sockfd = socket(AF_INET, SOCK_STREAM, 0);
-     if (sockfd < 0) 
+     if (sockfd < 0)
          error("ERROR opening\n");
-         
-     //if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) < 0)
-     //	error("setsockopt(SO_REUSEADDR) failed");
      bzero((char *) &serv_addr, sizeof(serv_addr));
      
      serv_addr.sin_family = AF_INET;
@@ -70,7 +66,7 @@ int init(int argc, char *argv[])
      return 0;
 }
 
-char* wait_connection(){
+char* NetworkTools::wait_connection(){
      tour++;
      usleep(20000);
      	
@@ -92,8 +88,9 @@ char* wait_connection(){
      
      return buffer;
 }
-     
-void close_connection(){
+
+void NetworkTools::close_connection(){
      close(newsockfd);
      close(sockfd);
 }
+

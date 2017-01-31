@@ -5,6 +5,7 @@
 #include "config.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <csignal>
 
 /**
  * Flag pour la boucle while du main
@@ -25,10 +26,10 @@ void interrupt(int sig){
  * Server. Il reçoit le signal du client et le code pour le renvoyer au GPIO.
  *
  * USAGE
- * ./main-server.out port
+ * ./main-server.out [port]
  *
  * EXEMPLE
- * ./main-server.out 51717
+ * ./main-server.out
  * @param argc
  * @param argv
  * @return
@@ -39,13 +40,13 @@ int main(int argc, char *argv[])
     signal(SIGINT, interrupt);
     signal(SIGTERM,interrupt);
 
-	init(argc, argv);
+    NetworkTools::initServer(argc, argv);
     std::string txt = "test morse";
     
     while(flag){
 
         // Reception de la phrase du client
-    	txt = (std::string)wait_connection();
+    	txt = (std::string) NetworkTools::wait_connection();
 
         // Cryptage césar
     	int key = 13;
@@ -109,60 +110,5 @@ int main(int argc, char *argv[])
     	fflush(stdout);
     
     }
-
-    close_connection();
+    NetworkTools::close_connection();
 }
-
-
-
-//exemple dutilisation des pins
-/*
-string inputstate;
-GpioTools* gpio4 = new GpioTools("4"); //create new GPIO object to be attached to  GPIO4
-GpioTools* gpio17 = new GpioTools("17"); //create new GPIO object to be attached to  GPIO17
-
-gpio4->export_gpio(); //export GPIO4
-gpio17->export_gpio(); //export GPIO17
-
-cout << " GPIO pins exported" << endl;
-
-gpio17->setdir_gpio("in"); //GPIO4 set to output
-gpio4->setdir_gpio("out"); // GPIO17 set to input
-
-cout << " Set GPIO pin directions" << endl;
-int c = 0;
-while(c<100)
-{
-    usleep(500000);  // wait for 0.5 seconds
-    gpio17->getval_gpio(inputstate); //read state of GPIO17 input pin
-    cout << "Current input pin state is " << inputstate  <<endl;
-    if(inputstate == "0") // if input pin is at state "0" i.e. button pressed
-    {
-        cout << "input pin state is Pressed .n Will check input pin state again in 20ms "<<endl;
-        usleep(20000);
-        cout << "Checking again ....." << endl;
-        gpio17->getval_gpio(inputstate); // checking again to ensure that state "0" is due to button press and not noise
-        if(inputstate == "0")
-        {
-            cout << "input pin state is definitely Pressed. Turning LED ON" <<endl;
-            gpio4->setval_gpio("1"); // turn LED ON
-
-            cout << " Waiting until pin is unpressed....." << endl;
-            while (inputstate == "0"){
-                gpio17->getval_gpio(inputstate);
-            };
-            cout << "pin is unpressed" << endl;
-
-        }
-        else
-            cout << "input pin state is definitely UnPressed . That was just noise." <<endl;
-
-    }
-    gpio4->setval_gpio("0");
-c++;
-}
-cout << "Exiting....." << endl;
-return 0;
-*/
-
-

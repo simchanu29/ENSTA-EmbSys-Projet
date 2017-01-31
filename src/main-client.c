@@ -22,13 +22,13 @@ void error(const char *msg)
  *
  * USAGE :
  * lancer d'abord le serveur puis le client.
- * ./main-client.out host port message
+ * ./main-client.out host message
  *
  * EXEMPLE :
- * ./main-client.out localhost 51717 hello_world!
+ * ./main-client.out localhost hello_world!
  *
  * @param argc
- * @param argv : host port message
+ * @param argv : host message
  * @return
  */
 int main(int argc, char *argv[])
@@ -39,14 +39,18 @@ int main(int argc, char *argv[])
     struct hostent *server;
     char buffer[256];
 
+
     // Gestion des arguments du main
-    if (argc < 4) {
-        fprintf(stderr,"usage %s hostname port message\n", argv[0]);
+    if (argc < 3) {
+        fprintf(stderr,"usage %s hostname message [port]\n", argv[0]);
         exit(0);
+    } else if(argc == 3){
+        portno = 51717;
+    } else{
+        portno = atoi(argv[3]);
     }
 
     // Socket
-    portno = atoi(argv[2]);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) {
         error("ERROR opening socket");

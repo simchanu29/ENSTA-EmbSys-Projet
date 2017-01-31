@@ -4,7 +4,26 @@
 
 #pragma once
 
-int init(int argc, char *argv[]);
 
-char* wait_connection();
-void close_connection();
+class NetworkTools
+{
+public:
+    /**
+     * Initialize server connection
+     * @param argc
+     * @param argv
+     * @return success
+     */
+     static int initServer(int argc, char *argv[]);
+
+    /**
+     * Wait for any communication from client.
+     * @return buffer
+     */
+    static char *wait_connection();
+
+    /**
+     * Close connection
+     */
+    static void close_connection();
+};

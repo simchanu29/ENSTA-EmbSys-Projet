@@ -1,6 +1,11 @@
 # ENSTA-EmbSys-Projet
 ##### Projet de système embarqué à l'ENSTA Bretagne
 
+## Utilisation
+
+__1.__ Connecter l'ordinateur avec un switch à la raspberry
+__2.__ Lancer `main-client.out adresse message`
+
 ## Compilation avec cmake
 
 Pour compiler les fichier, creer un répertoire de compilation, 
@@ -26,6 +31,10 @@ localhost est utilisé lorsque le serveur tourne sur la même machine que le cli
 ___
 
 ## Installation de la raspberry
+### Installation de l'OS a partir de Windows
+__1.__ Télécharger la dernière version de Raspbian (version sans interface graphique) à partir du site de Raspberry.  
+__2.__ Utiliser Win32DiskImager pour écrire l'image disque sur une la carte SD de la Raspberry
+
 ### Configuration du proxy
 Voir le share de Lebars, en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole.
 ```
@@ -48,7 +57,13 @@ sudo apt-get install git
 Pour cloner le code il suffit de faire : 
 ```
 git clone https://github.com/simchanu29/ENSTA-EmbSys-Projet.git
+cd ENSTA-EmbSys-Projet
 ```
+
+### Mise en place d'une adresse ip statique
+
+
+
 ## Cross compilation
 On utilise les tutoriels suivants :  
 https://solderspot.wordpress.com/2014/11/17/cross-compiling-for-raspberry-pi-part-i/  

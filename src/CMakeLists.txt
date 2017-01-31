@@ -4,8 +4,8 @@ set(TOOLS
         utility/CryptoTools.cpp
         utility/NetworkTools.cpp)
 
-# Units tests
-add_executable(server.out ${TOOLS} main-server.cpp)
+# Server executable
+add_executable(main-server.out ${TOOLS} main-server.cpp)
 
-# Units tests
-add_executable(client.out main-client.c)
+# Client executable
+add_executable(main-client.out main-client.c)
