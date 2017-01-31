@@ -11,23 +11,36 @@ __3.__ [Informations annexes](#informations-annexes)
 
 ___
 
-## Installation
+## __1.__ Utilisation<a name="utilisation" />
 
-### Installation de l'OS a partir de Windows
+__1.__ Connecter l'ordinateur avec un switch à la raspberry  
+__2.__ Lancer `main-client.out adresse message` sur le PC pour envoyer le message voulu
+
+___
+
+## __2.__ Installation<a name="installation" />
+
+### Installation de l'OS à partir de Windows
 __1.__ Télécharger la dernière version de Raspbian (version sans interface graphique) à partir du site de Raspberry.  
-__2.__ Utiliser Win32DiskImager pour écrire l'image disque sur une la carte SD de la Raspberry
+__2.__ Utiliser Win32DiskImager pour écrire l'image disque sur une la carte SD de la Raspberry  
+__3.__ Démonter la carte SD du PC et l'insérer dans la Raspberry Pi
 
 ### Configuration du proxy
-Voir le share de Lebars, en particulier les exports et les acquire pour la configuration par ethernet pour l'ecole.
+Voir le share de Lebars, en particulier les exports et les acquire pour la configuration par ethernet pour l'ENSTA Bretagne.
 ```
 http://www.ensta-bretagne.fr/lebars/Share/Ubuntu.txt
 ```
-Dans le cas du wifi modifier wpa_supplicant.conf 
+Dans le cas d'une utilisation du wifi modifier ou créer `wpa_supplicant.conf` dans `/etc/wpa-supplicant/` 
 ```
 network={
         ssid="your_ssid"
         psk="your_passwd"
 }
+```
+Puis on reboot la connection wifi : 
+```
+sudo ifdown wlan0
+sudo ifup wlan0
 ```
 
 ### Mise a jour  
@@ -40,6 +53,8 @@ Pour cloner le code il suffit de faire :
 ```
 git clone https://github.com/simchanu29/ENSTA-EmbSys-Projet.git
 cd ENSTA-EmbSys-Projet
+git submodules init
+git submodules update
 ```
 
 ### Mise en place d'une adresse ip statique
@@ -48,12 +63,8 @@ http://www.framboise314.fr/allouer-une-adresse-ip-fixe-au-raspberry/
 
 Dans notre cas nous avons alloués l'adresse ip `192.168.1.20`
 
-___
-
-## Utilisation
-
-__1.__ Connecter l'ordinateur avec un switch à la raspberry  
-__2.__ Lancer `main-client.out adresse message`
+Il faut aussi allouer une adresse ip statique au PC qui indique quee les deux appareils sont sur le même réseau. 
+Dans notre cas nous utilisons `192.168.1.21`
 
 ### Compilation
 

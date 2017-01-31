@@ -1,3 +1,6 @@
 [submodule "toolchains/armadeus"]
 	path = toolchains/armadeus
 	url = https://github.com/pblottiere/armadeus
+[submodule "toolchains/raspberry"]
+	path = toolchains/raspberry
+	url = https://github.com/raspberrypi/tools
