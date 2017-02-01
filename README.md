@@ -68,7 +68,16 @@ Dans notre cas nous utilisons `192.168.1.21`
 
 ### Compilation
 
-#### Compilation avec cmake sur la raspberry
+#### Scripts de compilation
+A la racine du projet il y a 3 scripts de compilation pour rendre le projet plus facile à utiliser/
+
+ * `build-armadeus.sh` pour la cross-compilation sur armadeus 
+ * `build.sh` pour la compilation sur le système 
+ * `build-raspberry.sh` pour la cross-compilation sur raspberry  
+
+Pour d'autres moyens de compiler le projet, voir ci-dessous.
+
+#### Compilation avec cmake sur le système
 
 Pour compiler les fichier, creer un répertoire de compilation, 
 par exemple `cmake-build-debug`, se placer dans ce dossier
@@ -94,8 +103,39 @@ localhost est utilisé lorsque le serveur tourne sur la même machine que le cli
 
 #### Cross-compilation avec cmake 
 
-Il faut pour cela modifier le ...
+Il faut pour cela normalement compiler les toolschains nécessaires. Néanmoins nous utilisons ici une toolchain qui a 
+déjà été précompilée pour raspberry. 
 
+Il suffit donc d'éxecuter la commande suivante qui spécifie le fichier de configuration pour l'utilisation de la toolchain
+et déplacer le fichier compilé sur la raspberry.
+```
+cmake -DCMAKE_TOOLCHAIN_FILE=Toolschains/raspberry.cmake ..
+make
+```
+
+### Installation de l'executable sur la raspberry
+
+Il faut ajouter un fichier nommé `morse-com.conf` (ou autre nom adapté) dans `/etc/init/` dans lequel on démarre 
+l'éxecutable du serveur.
+
+1. `sudo nano /etc/init/morse-com.conf`
+2. Ajouter ce code dans le fichier : 
+```
+description "Morse communication server"
+
+start on runlevel [2345]
+task
+exec /path/to/the/executable
+```
+
+Dans notre cas on a : 
+```
+description "Morse communication server"
+
+start on runlevel [2345]
+task
+exec ~ main-server.out
+```
 ___
 
 ## __3.__ Informations annexes<a name="informations-annexes" />
@@ -119,3 +159,4 @@ doxygen dConfig.doxygen
 
 #### Troubleshooting
  - Le code contiens des parties valides uniquement sous C++11, par conséquent il faut g++ 4.6 ou plus lors de la compilation
+ - Le projet n'a été testé pour l'instant qu'avec une raspberry pi 1. Il y a pour l'instant des problème de compilation de la toolchain pour la carte armadeus.
